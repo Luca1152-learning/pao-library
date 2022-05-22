@@ -3,6 +3,7 @@ package pao.library.api.model;
 import com.google.common.hash.Hashing;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class User extends BaseEntity<Integer> {
     private final String username;
@@ -22,7 +23,7 @@ public class User extends BaseEntity<Integer> {
     }
 
     public User(String username, String hashedPassword, String firstName, String lastName) {
-        super(-1); // No id provided, set to -1 for now
+        super(null);
         this.username = username;
         this.hashedPassword = hashedPassword;
         this.firstName = firstName;
@@ -56,6 +57,19 @@ public class User extends BaseEntity<Integer> {
 
     @Override
     public String toString() {
-        return "User[id=" + id + ", username=" + username + ", name=" + firstName + " " + lastName;
+        return "User[id=" + id + ", username=" + username + ", name=" + firstName + " " + lastName + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return username.equals(user.username) && hashedPassword.equals(user.hashedPassword) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && role == user.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, hashedPassword, firstName, lastName, role);
     }
 }
