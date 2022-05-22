@@ -3,7 +3,7 @@ package pao.library.api.model;
 import java.util.Objects;
 
 public class Category extends BaseEntity<Integer> {
-    private final String name;
+    private String name;
 
     public Category(int id, String name) {
         super(id);
@@ -17,6 +17,10 @@ public class Category extends BaseEntity<Integer> {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
