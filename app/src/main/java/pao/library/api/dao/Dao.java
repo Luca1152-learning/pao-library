@@ -18,13 +18,13 @@ public abstract class Dao<T, K> {
         connection = JdbcConnection.getConnection();
     }
 
-    abstract T get(K id);
+    public abstract T get(K id);
 
-    abstract Collection<T> getAll();
+    public abstract Collection<T> getAll();
 
-    abstract T save(T t);
+    public abstract T save(T t);
 
-    abstract void update(T t);
+    public abstract void update(T t);
 
-    abstract void delete(T t);
+    public abstract void delete(T t);
 }
