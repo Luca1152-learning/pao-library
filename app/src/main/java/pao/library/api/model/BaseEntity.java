@@ -1,7 +1,7 @@
-package pao.library.api.entities;
+package pao.library.api.model;
 
 public class BaseEntity<K> {
-    protected final K id;
+    protected K id;
 
     public BaseEntity(K id) {
         this.id = id;
@@ -9,5 +9,9 @@ public class BaseEntity<K> {
 
     public K getId() {
         return id;
+    }
+
+    public void setId(K id) {
+        this.id = id;
     }
 }

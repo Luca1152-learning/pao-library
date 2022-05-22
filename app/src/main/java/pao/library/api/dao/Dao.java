@@ -22,7 +22,7 @@ public abstract class Dao<T, K> {
 
     public abstract Collection<T> getAll();
 
-    public abstract T save(T t);
+    public abstract K save(T t);
 
     public abstract void update(T t);
 
