@@ -25,7 +25,7 @@ public class Category extends BaseEntity<Integer> {
 
     @Override
     public String toString() {
-        return "Category[name=" + name + "]";
+        return "Category[id = " + id + ", name=" + name + "]";
     }
 
     @Override

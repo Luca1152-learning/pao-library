@@ -39,4 +39,9 @@ public class BookCategory {
     public int hashCode() {
         return Objects.hash(bookId, categoryId);
     }
+
+    @Override
+    public String toString() {
+        return "BookCategory[" + "bookId=" + bookId + ", categoryId=" + categoryId + ']';
+    }
 }

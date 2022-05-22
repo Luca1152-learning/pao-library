@@ -1,8 +1,7 @@
 package pao.library.api.model;
 
 public enum Role {
-    USER,
-    LIBRARIAN;
+    USER, LIBRARIAN;
 
     public static Role fromString(String str) {
         switch (str) {
@@ -13,7 +12,6 @@ public enum Role {
         }
         throw new RuntimeException("Type " + str + " isn't being handled");
     }
-
 
     @Override
     public String toString() {

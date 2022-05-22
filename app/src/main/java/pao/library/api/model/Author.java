@@ -25,7 +25,7 @@ public class Author extends BaseEntity<Integer> {
 
     @Override
     public String toString() {
-        return "Author[name=" + name + "]";
+        return "Author[id = " + id + ", name=" + name + "]";
     }
 
     @Override
