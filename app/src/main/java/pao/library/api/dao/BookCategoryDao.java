@@ -36,7 +36,7 @@ public class BookCategoryDao extends Dao<BookCategory, Integer> {
     }
 
     @Override
-    public Integer save(BookCategory bookCategory) {
+    public Integer save(BookCategory bookCategory) throws SQLException {
         if (bookCategory == null) {
             throw new RuntimeException("The book category instance to save shouldn't be null");
         }
@@ -48,8 +48,6 @@ public class BookCategoryDao extends Dao<BookCategory, Integer> {
             statement.setInt(1, bookCategory.getBookId());
             statement.setInt(2, bookCategory.getCategoryId());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;

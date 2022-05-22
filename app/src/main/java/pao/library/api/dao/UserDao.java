@@ -62,7 +62,7 @@ public class UserDao extends Dao<User, Integer> {
     }
 
     @Override
-    public Integer save(User user) {
+    public Integer save(User user) throws SQLException {
         if (user == null) {
             throw new RuntimeException("The user to save shouldn't be null");
         }
@@ -87,20 +87,18 @@ public class UserDao extends Dao<User, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
         return generatedId;
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws SQLException {
         if (user == null) {
             throw new RuntimeException("The user to update shouldn't be null");
         }
 
-        String sql = "UPDATE users " + "SET username=?, password=?, first_name=?, last_name=?, role=? " + "WHERE user_id=?";
+        String sql = "UPDATE users " + "SET username=?, password=?, first_name=?, last_name=?, role=? " + "WHERE " +
+                "user_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getHashedPassword());
@@ -110,8 +108,6 @@ public class UserDao extends Dao<User, Integer> {
             statement.setInt(6, user.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

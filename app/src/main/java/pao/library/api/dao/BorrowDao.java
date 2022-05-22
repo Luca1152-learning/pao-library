@@ -58,7 +58,7 @@ public class BorrowDao extends Dao<Borrow, Integer> {
     }
 
     @Override
-    public Integer save(Borrow borrow) {
+    public Integer save(Borrow borrow) throws SQLException {
         if (borrow == null) {
             throw new RuntimeException("The borrow to save shouldn't be null");
         }
@@ -84,15 +84,13 @@ public class BorrowDao extends Dao<Borrow, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;
     }
 
     @Override
-    public void update(Borrow borrow) {
+    public void update(Borrow borrow) throws SQLException {
         if (borrow == null) {
             throw new RuntimeException("The borrow to update shouldn't be null");
         }
@@ -108,8 +106,6 @@ public class BorrowDao extends Dao<Borrow, Integer> {
             statement.setInt(6, borrow.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

@@ -52,7 +52,7 @@ public class PublisherDao extends Dao<Publisher, Integer> {
     }
 
     @Override
-    public Integer save(Publisher publisher) {
+    public Integer save(Publisher publisher) throws SQLException {
         if (publisher == null) {
             throw new RuntimeException("The publisher to save shouldn't be null");
         }
@@ -72,15 +72,13 @@ public class PublisherDao extends Dao<Publisher, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;
     }
 
     @Override
-    public void update(Publisher publisher) {
+    public void update(Publisher publisher) throws SQLException {
         if (publisher == null) {
             throw new RuntimeException("The publisher to update shouldn't be null");
         }
@@ -91,8 +89,6 @@ public class PublisherDao extends Dao<Publisher, Integer> {
             statement.setInt(2, publisher.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

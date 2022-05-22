@@ -3,6 +3,7 @@ package pao.library.api.dao;
 import pao.library.api.JdbcConnection;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Collection;
 
 /**
@@ -22,9 +23,9 @@ public abstract class Dao<T, K> {
 
     public abstract Collection<T> getAll();
 
-    public abstract K save(T t);
+    public abstract K save(T t) throws SQLException;
 
-    public abstract void update(T t);
+    public abstract void update(T t) throws SQLException;
 
     public abstract void delete(T t);
 }

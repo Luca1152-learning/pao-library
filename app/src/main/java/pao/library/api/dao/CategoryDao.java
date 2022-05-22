@@ -52,7 +52,7 @@ public class CategoryDao extends Dao<Category, Integer> {
     }
 
     @Override
-    public Integer save(Category category) {
+    public Integer save(Category category) throws SQLException {
         if (category == null) {
             throw new RuntimeException("The category to save shouldn't be null");
         }
@@ -72,15 +72,13 @@ public class CategoryDao extends Dao<Category, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;
     }
 
     @Override
-    public void update(Category category) {
+    public void update(Category category) throws SQLException {
         if (category == null) {
             throw new RuntimeException("The category to update shouldn't be null");
         }
@@ -91,8 +89,6 @@ public class CategoryDao extends Dao<Category, Integer> {
             statement.setInt(2, category.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

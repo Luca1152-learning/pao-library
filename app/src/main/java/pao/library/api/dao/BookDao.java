@@ -64,7 +64,7 @@ public class BookDao extends Dao<Book, Integer> {
     }
 
     @Override
-    public Integer save(Book book) {
+    public Integer save(Book book) throws SQLException {
         if (book == null) {
             throw new RuntimeException("The book to save shouldn't be null");
         }
@@ -91,15 +91,13 @@ public class BookDao extends Dao<Book, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;
     }
 
     @Override
-    public void update(Book book) {
+    public void update(Book book) throws SQLException {
         if (book == null) {
             throw new RuntimeException("The book to update shouldn't be null");
         }
@@ -116,8 +114,6 @@ public class BookDao extends Dao<Book, Integer> {
             statement.setInt(7, book.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

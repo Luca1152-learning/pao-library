@@ -36,7 +36,7 @@ public class BookAuthorDao extends Dao<BookAuthor, Integer> {
     }
 
     @Override
-    public Integer save(BookAuthor bookAuthor) {
+    public Integer save(BookAuthor bookAuthor) throws SQLException {
         if (bookAuthor == null) {
             throw new RuntimeException("The book author instance to save shouldn't be null");
         }
@@ -48,8 +48,6 @@ public class BookAuthorDao extends Dao<BookAuthor, Integer> {
             statement.setInt(1, bookAuthor.getBookId());
             statement.setInt(2, bookAuthor.getAuthorId());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;

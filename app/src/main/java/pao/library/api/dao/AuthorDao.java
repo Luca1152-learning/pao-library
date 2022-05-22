@@ -52,7 +52,7 @@ public class AuthorDao extends Dao<Author, Integer> {
     }
 
     @Override
-    public Integer save(Author author) {
+    public Integer save(Author author) throws SQLException {
         if (author == null) {
             throw new RuntimeException("The author to save shouldn't be null");
         }
@@ -72,15 +72,13 @@ public class AuthorDao extends Dao<Author, Integer> {
                 }
                 resultSet.close();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return generatedId;
     }
 
     @Override
-    public void update(Author author) {
+    public void update(Author author) throws SQLException {
         if (author == null) {
             throw new RuntimeException("The author to update shouldn't be null");
         }
@@ -91,8 +89,6 @@ public class AuthorDao extends Dao<Author, Integer> {
             statement.setInt(2, author.getId());
 
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
