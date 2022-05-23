@@ -33,13 +33,14 @@ public class Book extends BaseEntity<Integer> {
         this.availableCopies = availableCopies;
     }
 
-    public void showDetails(Collection<String> authorsNames, String publisherName) {
+    public void showDetails(Collection<String> authorsNames, Collection<String> categories, String publisherName) {
         System.out.println("Title: " + getTitle());
         System.out.println("Author(s): " + String.join(", ", authorsNames));
         System.out.println("Publication year: " + getFirstPublicationYear());
         System.out.println("Publisher: " + publisherName);
         System.out.println("Description: " + getDescription());
         System.out.println("Pages: " + getPagesCount());
+        System.out.println("Categories: " + String.join(", ", categories));
         System.out.println("Available copies: " + getAvailableCopies());
     }
 

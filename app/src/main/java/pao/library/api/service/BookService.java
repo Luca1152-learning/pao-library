@@ -1,9 +1,6 @@
 package pao.library.api.service;
 
-import pao.library.api.dao.AuthorDao;
-import pao.library.api.dao.BookAuthorDao;
-import pao.library.api.dao.BookCategoryDao;
-import pao.library.api.dao.BookDao;
+import pao.library.api.dao.*;
 import pao.library.api.model.*;
 
 import java.sql.SQLException;
@@ -12,6 +9,7 @@ import java.util.Collection;
 public class BookService {
     private static final BookDao BOOK_DAO = new BookDao();
     private static final AuthorDao AUTHOR_DAO = new AuthorDao();
+    private static final CategoryDao CATEGORY_DAO = new CategoryDao();
     private static final BookAuthorDao BOOK_AUTHOR_DAO = new BookAuthorDao();
     private static final BookCategoryDao BOOK_CATEGORY_DAO = new BookCategoryDao();
 
@@ -27,6 +25,17 @@ public class BookService {
         return AUTHOR_DAO.getAll().stream()
                 .filter(author -> bookAuthorsIds.contains(author.getId()))
                 .map(Author::getName)
+                .toList();
+    }
+
+    public static Collection<String> getBookCategories(int bookId) {
+        Collection<Integer> bookCategoriesIds = BOOK_CATEGORY_DAO.getAll().stream()
+                .filter(bookCategory -> bookCategory.getBookId() == bookId)
+                .map(BookCategory::getCategoryId).toList();
+
+        return CATEGORY_DAO.getAll().stream()
+                .filter(category -> bookCategoriesIds.contains(category.getId()))
+                .map(Category::getName)
                 .toList();
     }
 

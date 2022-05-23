@@ -38,7 +38,8 @@ public class BrowseBooksIo {
         Book book = BookService.getBookById(bookId);
         System.out.println();
         book.showDetails(
-                BookService.getBookAuthors(bookId), PublisherService.getPublisherById(book.getPublisherId()).getName()
+                BookService.getBookAuthors(bookId), BookService.getBookCategories(bookId),
+                PublisherService.getPublisherById(book.getPublisherId()).getName()
         );
 
         Scanner scanner = new Scanner(System.in);

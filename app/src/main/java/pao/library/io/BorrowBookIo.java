@@ -49,7 +49,8 @@ public class BorrowBookIo {
         Book book = BookService.getBookById(bookId);
         System.out.println();
         book.showDetails(
-                BookService.getBookAuthors(bookId), PublisherService.getPublisherById(book.getPublisherId()).getName()
+                BookService.getBookAuthors(bookId), BookService.getBookCategories(bookId),
+                PublisherService.getPublisherById(book.getPublisherId()).getName()
         );
 
         if (book.getAvailableCopies() > 0) {
