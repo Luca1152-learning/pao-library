@@ -21,7 +21,7 @@ public class BookDao extends Dao<Book, Integer> {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String title = resultSet.getString("title");
-                String description = resultSet.getString("password");
+                String description = resultSet.getString("description");
                 int publisherId = resultSet.getInt("publisher_id");
                 int firstPublicationYear = resultSet.getInt("first_publication_year");
                 int pagesCount = resultSet.getInt("pages_count");
@@ -46,7 +46,7 @@ public class BookDao extends Dao<Book, Integer> {
             while (resultSet.next()) {
                 int id = resultSet.getInt("book_id");
                 String title = resultSet.getString("title");
-                String description = resultSet.getString("password");
+                String description = resultSet.getString("description");
                 int publisherId = resultSet.getInt("publisher_id");
                 int firstPublicationYear = resultSet.getInt("first_publication_year");
                 int pagesCount = resultSet.getInt("pages_count");
