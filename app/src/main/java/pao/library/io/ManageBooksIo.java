@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ManageBooksIo {
-    public static final NumberedOptions CONFIRM_OPTIONS = new NumberedOptions(new ArrayList<>(Arrays.asList(
-            "Yes", // 1
+    public static final NumberedOptions CONFIRM_OPTIONS = new NumberedOptions(new ArrayList<>(Arrays.asList("Yes", // 1
             "No" // 2
     )));
-    private static final NumberedOptions MAIN_OPTIONS = new NumberedOptions(new ArrayList<>(Arrays.asList(
-            "Add...", // 1
+    private static final NumberedOptions MAIN_OPTIONS = new NumberedOptions(new ArrayList<>(Arrays.asList("Add...", // 1
             "Update...", // 2
             "Delete...", // 3
             "Exit" // 4
@@ -68,12 +66,14 @@ public class ManageBooksIo {
         }
     }
 
-    public static int promptForPublisherId() {
+    public static int promptForPublisherId(boolean abortOption) {
         // Obtain strings with all the options for the menu
         System.out.println();
         ArrayList<Publisher> publishers = new ArrayList<>(PublisherService.getAllPublishers());
         ArrayList<String> stringOptions = new ArrayList<>(publishers.stream().map(Publisher::getName).toList());
-        stringOptions.add("Abort");
+        if (abortOption) {
+            stringOptions.add("Abort");
+        }
 
         // Create the menu
         NumberedOptions publishersOptions = new NumberedOptions(stringOptions);
@@ -81,7 +81,7 @@ public class ManageBooksIo {
 
         if (option >= 1 && option <= publishers.size()) {
             return publishers.get(option - 1).getId();
-        } else if (option == publishers.size() + 1) {
+        } else if (abortOption && option == publishers.size() + 1) {
             // Exit
             return -1;
         } else {
@@ -107,6 +107,68 @@ public class ManageBooksIo {
             return -1;
         } else {
             throw new RuntimeException("Option not handled.");
+        }
+    }
+
+    public static ArrayList<Author> promptForAuthors() {
+        ArrayList<Author> chosenAuthors = new ArrayList<>();
+        while (true) {
+            // Obtain strings with all the options for the menu
+            System.out.println();
+            ArrayList<Author> authors =
+                    new ArrayList<>(AuthorService.getAllAuthors().stream().filter(author -> !chosenAuthors.contains(author)).toList());
+            ArrayList<String> stringOptions = new ArrayList<>(authors.stream().map(Author::getName).toList());
+            stringOptions.add("Exit");
+
+            // Display current chosen authors
+            if (!chosenAuthors.isEmpty()) {
+                System.out.println("Authors chosen so far: " + String.join(", ",
+                        chosenAuthors.stream().map(Author::getName).toList()));
+            }
+
+            // Create the menu
+            NumberedOptions categoriesOptions = new NumberedOptions(stringOptions);
+            int option = categoriesOptions.prompt();
+
+            if (option >= 1 && option <= authors.size()) {
+                chosenAuthors.add(authors.get(option - 1));
+            } else if (option == authors.size() + 1) {
+                // Exit
+                return chosenAuthors;
+            } else {
+                throw new RuntimeException("Option not handled.");
+            }
+        }
+    }
+
+    public static ArrayList<Category> promptForCategories() {
+        ArrayList<Category> chosenCategories = new ArrayList<>();
+        while (true) {
+            // Obtain strings with all the options for the menu
+            System.out.println();
+            ArrayList<Category> categories =
+                    new ArrayList<>(CategoryService.getAllCategories().stream().filter(category -> !chosenCategories.contains(category)).toList());
+            ArrayList<String> stringOptions = new ArrayList<>(categories.stream().map(Category::getName).toList());
+            stringOptions.add("Exit");
+
+            // Display current chosen categories
+            if (!chosenCategories.isEmpty()) {
+                System.out.println("Categories chosen so far: " + String.join(", ",
+                        chosenCategories.stream().map(Category::getName).toList()));
+            }
+
+            // Create the menu
+            NumberedOptions categoriesOptions = new NumberedOptions(stringOptions);
+            int option = categoriesOptions.prompt();
+
+            if (option >= 1 && option <= categories.size()) {
+                chosenCategories.add(categories.get(option - 1));
+            } else if (option == categories.size() + 1) {
+                // Exit
+                return chosenCategories;
+            } else {
+                throw new RuntimeException("Option not handled.");
+            }
         }
     }
 

@@ -77,7 +77,7 @@ public class DeleteIo {
     }
 
     private void promptDeletePublisher() {
-        int publisherId = ManageBooksIo.promptForPublisherId();
+        int publisherId = ManageBooksIo.promptForPublisherId(true);
         if (publisherId == -1) return;
         boolean confirmDeletion = confirmPublisherDeletion(publisherId);
         if (confirmDeletion) {

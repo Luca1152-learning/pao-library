@@ -1,9 +1,11 @@
 package pao.library.io;
 
 import pao.library.api.model.Author;
+import pao.library.api.model.Book;
 import pao.library.api.model.Category;
 import pao.library.api.model.Publisher;
 import pao.library.api.service.AuthorService;
+import pao.library.api.service.BookService;
 import pao.library.api.service.CategoryService;
 import pao.library.api.service.PublisherService;
 
@@ -47,7 +49,41 @@ public class AddIo {
     }
 
     private void promptAddBook() {
-        // TODO
+        System.out.println();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Title: ");
+        String title = scanner.nextLine();
+        System.out.print("Pick the authors.");
+        ArrayList<Author> authors = ManageBooksIo.promptForAuthors();
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+        System.out.print("Pick the publisher.");
+        int publisherId = ManageBooksIo.promptForPublisherId(false);
+        System.out.print("Publication year: ");
+        int firstPublicationYear = scanner.nextInt();
+        System.out.print("Pages count: ");
+        int pagesCount = scanner.nextInt();
+        System.out.print("Pick the categories.");
+        ArrayList<Category> categories = ManageBooksIo.promptForCategories();
+        System.out.print("Available copies: ");
+        int availableCopies = scanner.nextInt();
+
+        // Add the book entity
+        Book book = new Book(title, description, publisherId, firstPublicationYear, pagesCount, availableCopies);
+        try {
+            int bookId = BookService.addBook(book);
+            book.setId(bookId);
+        } catch (SQLException exception) {
+            System.out.println("Error while adding the book.");
+            return;
+        }
+
+        // Add the book's authors
+        BookService.addBookAuthors(book.getId(), authors);
+
+        // Add the book's categories
+        BookService.addBookCategories(book.getId(), categories);
     }
 
     private void promptAddAuthor() {
