@@ -28,6 +28,14 @@ public class BookService {
                 .toList();
     }
 
+    public static void deleteAllBookAuthors(int bookId) {
+        Collection<Integer> bookAuthorsIds = BOOK_AUTHOR_DAO.getAll().stream()
+                .filter(bookAuthor -> bookAuthor.getBookId() == bookId)
+                .map(BookAuthor::getAuthorId).toList();
+
+        bookAuthorsIds.forEach(authorId -> BOOK_AUTHOR_DAO.delete(new BookAuthor(bookId, authorId)));
+    }
+
     public static Collection<String> getBookCategories(int bookId) {
         Collection<Integer> bookCategoriesIds = BOOK_CATEGORY_DAO.getAll().stream()
                 .filter(bookCategory -> bookCategory.getBookId() == bookId)
@@ -39,6 +47,15 @@ public class BookService {
                 .toList();
     }
 
+    public static void deleteAllBookCategories(int bookId) {
+        Collection<Integer> bookCategoriesIds = BOOK_CATEGORY_DAO.getAll().stream()
+                .filter(bookCategory -> bookCategory.getBookId() == bookId)
+                .map(BookCategory::getCategoryId).toList();
+
+        bookCategoriesIds.forEach(categoryId -> BOOK_CATEGORY_DAO.delete(new BookCategory(bookId, categoryId)));
+    }
+
+
     public static Book getBookById(int bookId) {
         return BOOK_DAO.get(bookId);
     }
@@ -49,6 +66,10 @@ public class BookService {
 
     public static int addBook(Book book) throws SQLException {
         return BOOK_DAO.save(book);
+    }
+
+    public static void updateBook(Book book) throws SQLException {
+        BOOK_DAO.update(book);
     }
 
     public static void addBookAuthors(int bookId, Collection<Author> authors) {
