@@ -4,4 +4,4 @@
 
 ## Database diagram
 
-![](https://i.imgur.com/psc4MA8.png)
+![](https://i.imgur.com/XS4bZXF.png)

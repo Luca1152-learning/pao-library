@@ -20,10 +20,9 @@ public class BorrowDao extends Dao<Borrow, Integer> {
                 int userId = resultSet.getInt("user_id");
                 int bookId = resultSet.getInt("book_Id");
                 Date borrowDate = resultSet.getDate("borrow_date");
-                Date returnDueDate = resultSet.getDate("return_due_date");
                 Date returnDate = resultSet.getDate("return_date");
 
-                borrow = new Borrow(id, userId, bookId, borrowDate, returnDueDate, returnDate);
+                borrow = new Borrow(id, userId, bookId, borrowDate, returnDate);
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -44,10 +43,9 @@ public class BorrowDao extends Dao<Borrow, Integer> {
                 int userId = resultSet.getInt("user_id");
                 int bookId = resultSet.getInt("book_Id");
                 Date borrowDate = resultSet.getDate("borrow_date");
-                Date returnDueDate = resultSet.getDate("return_due_date");
                 Date returnDate = resultSet.getDate("return_date");
 
-                Borrow borrow = new Borrow(id, userId, bookId, borrowDate, returnDueDate, returnDate);
+                Borrow borrow = new Borrow(id, userId, bookId, borrowDate, returnDate);
                 borrows.add(borrow);
             }
         } catch (SQLException e) {
@@ -65,14 +63,13 @@ public class BorrowDao extends Dao<Borrow, Integer> {
 
         Integer generatedId = null;
 
-        String sql = "INSERT INTO borrows(user_id, book_id, borrow_date, return_due_date, return_date) VALUES (?, ?, "
-                + "?, ?, ?)";
+        String sql = "INSERT INTO borrows(user_id, book_id, borrow_date, return_date) VALUES (?, ?, "
+                + "?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, borrow.getUserId());
             statement.setInt(2, borrow.getBookId());
             statement.setDate(3, borrow.getBorrowDate());
-            statement.setDate(4, borrow.getReturnDueDate());
-            statement.setDate(5, borrow.getReturnDate());
+            statement.setDate(4, borrow.getReturnDate());
 
             int numberOfInstertedRows = statement.executeUpdate();
 
@@ -95,15 +92,14 @@ public class BorrowDao extends Dao<Borrow, Integer> {
             throw new RuntimeException("The borrow to update shouldn't be null");
         }
 
-        String sql = "UPDATE borrows SET user_id=?, book_id=?, borrow_date=?, return_due_date=?, " +
+        String sql = "UPDATE borrows SET user_id=?, book_id=?, borrow_date=?, " +
                 "return_date=? WHERE borrow_id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, borrow.getUserId());
             statement.setInt(2, borrow.getBookId());
             statement.setDate(3, borrow.getBorrowDate());
-            statement.setDate(4, borrow.getReturnDueDate());
-            statement.setDate(5, borrow.getReturnDate());
-            statement.setInt(6, borrow.getId());
+            statement.setDate(4, borrow.getReturnDate());
+            statement.setInt(5, borrow.getId());
 
             statement.executeUpdate();
         }
