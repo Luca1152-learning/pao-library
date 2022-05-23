@@ -13,7 +13,6 @@ public class AuthIo {
             "Sign up", // 1
             "Sign in" // 2
     )));
-    private static final UserService USER_SERVICE = new UserService();
 
     public User prompt() {
         System.out.println("Please sign in / sign up.");
@@ -28,7 +27,7 @@ public class AuthIo {
                 String firstName = promptFirstName();
                 String lastName = promptLastName();
                 try {
-                    return USER_SERVICE.signUp(username, password, firstName, lastName);
+                    return UserService.signUp(username, password, firstName, lastName);
                 } catch (SQLException exception) {
                     // Probably there's a duplicate username
                     System.out.println("\nSign up error. Try again.");
@@ -40,7 +39,7 @@ public class AuthIo {
                 System.out.println();
                 String username = promptUsername();
                 String password = promptPassword();
-                User user = USER_SERVICE.signIn(username, password);
+                User user = UserService.signIn(username, password);
                 if (user != null) {
                     return user;
                 } else {

@@ -11,7 +11,7 @@ import java.util.Objects;
 public class UserService {
     private static final UserDao USER_DAO = new UserDao();
 
-    public User signUp(String username, String password, String firstName, String lastName) throws SQLException {
+    public static User signUp(String username, String password, String firstName, String lastName) throws SQLException {
         // Create the user object
         String hashedPassword = User.hashPassword(password);
         User user = new User(username, hashedPassword, firstName, lastName);
@@ -23,7 +23,7 @@ public class UserService {
         return user;
     }
 
-    public User signIn(String username, String password) {
+    public static User signIn(String username, String password) {
         // Get the hashed password
         String hashedPassword = User.hashPassword(password);
 
