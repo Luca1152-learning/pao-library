@@ -38,7 +38,7 @@ public class AuthorDao extends Dao<Author, Integer> {
         String sql = "SELECT * FROM authors";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("author_id");
                 String name = resultSet.getString("name");
 
                 Author author = new Author(id, name);

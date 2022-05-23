@@ -38,7 +38,7 @@ public class PublisherDao extends Dao<Publisher, Integer> {
         String sql = "SELECT * FROM publishers";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("publisher_id");
                 String name = resultSet.getString("name");
 
                 Publisher publisher = new Publisher(id, name);

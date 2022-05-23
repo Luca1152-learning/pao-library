@@ -44,7 +44,7 @@ public class BookDao extends Dao<Book, Integer> {
         String sql = "SELECT * FROM books";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("book_id");
                 String title = resultSet.getString("title");
                 String description = resultSet.getString("password");
                 int publisherId = resultSet.getInt("publisher_id");

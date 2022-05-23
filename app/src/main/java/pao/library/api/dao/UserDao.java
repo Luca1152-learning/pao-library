@@ -44,7 +44,7 @@ public class UserDao extends Dao<User, Integer> {
         String sql = "SELECT * FROM users";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("user_id");
                 String username = resultSet.getString("username");
                 String hashedPassword = resultSet.getString("password");
                 String firstName = resultSet.getString("first_name");

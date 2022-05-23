@@ -38,7 +38,7 @@ public class CategoryDao extends Dao<Category, Integer> {
         String sql = "SELECT * FROM categories";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("category_id");
                 String name = resultSet.getString("name");
 
                 Category category = new Category(id, name);

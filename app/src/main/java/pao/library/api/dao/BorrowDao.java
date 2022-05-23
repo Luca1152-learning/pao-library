@@ -40,7 +40,7 @@ public class BorrowDao extends Dao<Borrow, Integer> {
         String sql = "SELECT * FROM borrows";
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("borrow_id");
                 int userId = resultSet.getInt("user_id");
                 int bookId = resultSet.getInt("book_Id");
                 Date borrowDate = resultSet.getDate("borrow_date");
