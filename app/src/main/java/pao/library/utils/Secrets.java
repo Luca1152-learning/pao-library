@@ -1,9 +1,10 @@
 package pao.library.utils;
 
 public enum Secrets {
-    DATABASE_URL("jdbc:postgresql://ec2-63-35-156-160.eu-west-1.compute.amazonaws.com:5432/derqc5g9ar8b4c?sslmode=require"),
-    DATABASE_USER("lsqucghuclddue"),
-    DATABASE_PASSWORD("d83e9fe141a25b604107d8ad239c7dd615de3699a4266e4dea5fcdf0307115c9");
+    DATABASE_URL("jdbc:postgresql://ec2-54-77-40-202.eu-west-1.compute.amazonaws" +
+            ".com:5432/ddsjhmrenu1bp3?sslmode=require"),
+    DATABASE_USER("gpjltautyhuyqg"),
+    DATABASE_PASSWORD("13a7cfb2e27c5ecb6f9830d8676c0c1efd54c1a032ca35882388d48e13065d0b");
 
     private final String str;
 
