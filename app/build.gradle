@@ -31,3 +31,8 @@ application {
     // Define the main class for the application.
     mainClass = 'pao.library.App'
 }
+
+// Make input using Scanner work
+run {
+    standardInput = System.in
+}
