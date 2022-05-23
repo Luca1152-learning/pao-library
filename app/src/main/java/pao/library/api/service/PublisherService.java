@@ -24,4 +24,8 @@ public class PublisherService {
     public static void addPublisher(Publisher publisher) throws SQLException {
         PUBLISHER_DAO.save(publisher);
     }
+
+    public static void updatePublisher(Publisher publisher) throws SQLException {
+        PUBLISHER_DAO.update(publisher);
+    }
 }

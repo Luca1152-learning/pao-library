@@ -28,16 +28,16 @@ public class AddIo {
             System.out.println();
             int option = MAIN_OPTIONS.prompt();
             if (option == 1) {
-                // Delete book
+                // Add book
                 promptAddBook();
             } else if (option == 2) {
-                // Delete author
+                // Add author
                 promptAddAuthor();
             } else if (option == 3) {
-                // Delete publisher
+                // Add publisher
                 promptAddPublisher();
             } else if (option == 4) {
-                // Delete category
+                // Add category
                 promptAddCategory();
             } else if (option == 5) {
                 // Exit

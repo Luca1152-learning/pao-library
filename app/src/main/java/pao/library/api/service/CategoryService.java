@@ -24,4 +24,8 @@ public class CategoryService {
     public static void addCategory(Category category) throws SQLException {
         CATEGORY_DAO.save(category);
     }
+
+    public static void updateCategory(Category category) throws SQLException {
+        CATEGORY_DAO.update(category);
+    }
 }

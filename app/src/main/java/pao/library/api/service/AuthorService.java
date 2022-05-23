@@ -24,4 +24,8 @@ public class AuthorService {
     public static void addAuthor(Author author) throws SQLException {
         AUTHOR_DAO.save(author);
     }
+
+    public static void updateAuthor(Author author) throws SQLException {
+        AUTHOR_DAO.update(author);
+    }
 }
