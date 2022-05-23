@@ -18,11 +18,12 @@ public class AppIo {
             "Manage borrows", // 3
             "Exit" // 4
     )));
+    private User user;
 
     public void prompt() {
         // Authentication
         System.out.println("Welcome!\n");
-        User user = (new AuthIo()).prompt();
+        user = (new AuthIo()).prompt();
 
         System.out.println("\nWelcome, " + user.getFirstName() + " " + user.getLastName() + "!");
 
@@ -37,12 +38,13 @@ public class AppIo {
     private void promptNormalUserOptions() {
         while (true) {
             int option = USER_OPTIONS.prompt();
+
             if (option == 1) {
                 // Browse books
                 (new BrowseBooksIo()).prompt();
             } else if (option == 2) {
                 // Borrow book
-                (new BorrowBookIo()).prompt();
+                (new BorrowBookIo()).prompt(user);
             } else if (option == 3) {
                 // Exit
                 break;

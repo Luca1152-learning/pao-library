@@ -1,5 +1,6 @@
 package pao.library.api.model;
 
+import java.util.Collection;
 import java.util.Objects;
 
 public class Book extends BaseEntity<Integer> {
@@ -30,6 +31,16 @@ public class Book extends BaseEntity<Integer> {
         this.firstPublicationYear = firstPublicationYear;
         this.pagesCount = pagesCount;
         this.availableCopies = availableCopies;
+    }
+
+    public void showDetails(Collection<String> authorsNames, String publisherName) {
+        System.out.println("Title: " + getTitle());
+        System.out.println("Author(s): " + String.join(", ", authorsNames));
+        System.out.println("Publication year: " + getFirstPublicationYear());
+        System.out.println("Publisher: " + publisherName);
+        System.out.println("Description: " + getDescription());
+        System.out.println("Pages: " + getPagesCount());
+        System.out.println("Available copies: " + getAvailableCopies());
     }
 
     public String getDescription() {
