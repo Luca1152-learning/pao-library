@@ -32,4 +32,8 @@ public class BookService {
     public static Book getBookById(int bookId) {
         return BOOK_DAO.get(bookId);
     }
+
+    public static void deleteBookById(int bookId) {
+        BOOK_DAO.delete(BOOK_DAO.get(bookId));
+    }
 }
