@@ -13,6 +13,10 @@ public class BorrowService {
     private static final BorrowDao BORROW_DAO = new BorrowDao();
     private static final BookDao BOOK_DAO = new BookDao();
 
+    public static Collection<Borrow> getAllBorrows() {
+        return BORROW_DAO.getAll();
+    }
+
     public static void scheduleBookBorrow(int userId, int bookId) {
         Book book = BookService.getBookById(bookId);
 
