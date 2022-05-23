@@ -3,6 +3,7 @@ package pao.library.api.service;
 import pao.library.api.dao.CategoryDao;
 import pao.library.api.model.Category;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class CategoryService {
@@ -18,5 +19,9 @@ public class CategoryService {
 
     public static void deleteCategoryById(int categoryId) {
         CATEGORY_DAO.delete(CATEGORY_DAO.get(categoryId));
+    }
+
+    public static void addCategory(Category category) throws SQLException {
+        CATEGORY_DAO.save(category);
     }
 }
