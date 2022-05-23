@@ -58,7 +58,7 @@ public class BorrowBookIo {
             int option = BORROW_OPTIONS.prompt();
             if (option == 1) {
                 BorrowService.scheduleBookBorrow(userId, bookId);
-                System.out.println("\nThe book is now yours. Come to the library to pick it up.\n");
+                System.out.println("\nThe book is now yours. Come to the library to pick it up.");
             } else if (option == 2) {
                 return;
             } else {
