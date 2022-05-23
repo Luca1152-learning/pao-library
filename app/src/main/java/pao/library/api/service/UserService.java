@@ -39,4 +39,8 @@ public class UserService {
             return null;
         }
     }
+
+    public static User getUserById(int userId) {
+        return USER_DAO.get(userId);
+    }
 }

@@ -5,7 +5,9 @@ import pao.library.api.dao.BorrowDao;
 import pao.library.api.model.Book;
 import pao.library.api.model.Borrow;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Collection;
 
 public class BorrowService {
     private static final BorrowDao BORROW_DAO = new BorrowDao();
@@ -25,6 +27,38 @@ public class BorrowService {
             BORROW_DAO.save(new Borrow(userId, bookId, null, null));
         } catch (SQLException exception) {
             exception.printStackTrace();
+        }
+    }
+
+    public static Collection<Borrow> getBorrowRequests() {
+        return BORROW_DAO.getAll().stream().filter(borrow -> borrow.getBorrowDate() == null).toList();
+    }
+
+    public static Collection<Borrow> getBorrowsToBeReturned() {
+        return BORROW_DAO.getAll().stream().filter(borrow -> borrow.getBorrowDate() != null && borrow.getReturnDate() == null).toList();
+    }
+
+    public static void satisfyBorrowRequest(int borrowId) {
+        Borrow borrow = BORROW_DAO.get(borrowId);
+
+        // Set the borrow date to today
+        borrow.setBorrowDate(new Date(System.currentTimeMillis()));
+        try {
+            BORROW_DAO.update(borrow);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void receiveBook(int borrowId) {
+        Borrow borrow = BORROW_DAO.get(borrowId);
+
+        // Set the return date to today
+        borrow.setReturnDate(new Date(System.currentTimeMillis()));
+        try {
+            BORROW_DAO.update(borrow);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
