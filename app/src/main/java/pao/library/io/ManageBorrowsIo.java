@@ -143,7 +143,5 @@ public class ManageBorrowsIo {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nType anything to continue: ");
         scanner.next();
-
-        // TODO
     }
 }
